@@ -24,9 +24,6 @@ const smoothScroll = () => {
     let scrennHeight = document.documentElement.clientHeight;
     let coords = window.pageYOffset;
 
-    console.log("clientHeight", scrennHeight);
-    console.log("pageYOffset", coords);
-
     if (scrennHeight > coords) {
       btnScrollTop.style.display = "none";
     } else if (scrennHeight < coords) {
