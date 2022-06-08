@@ -1,3 +1,3 @@
-import script from "./modules/script";
+import smoothScroll from "./modules/smoothScroll";
 
-script();
+smoothScroll();
