@@ -16,7 +16,17 @@
   \******************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_smoothScroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/smoothScroll */ \"./modules/smoothScroll.js\");\n/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal */ \"./modules/modal.js\");\n\r\n\r\n\r\n(0,_modules_smoothScroll__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\r\n(0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\r\n\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_smoothScroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/smoothScroll */ \"./modules/smoothScroll.js\");\n/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modal */ \"./modules/modal.js\");\n/* harmony import */ var _modules_accordeon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/accordeon */ \"./modules/accordeon.js\");\n\r\n\r\n\r\n\r\n(0,_modules_smoothScroll__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\r\n(0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__[\"default\"])();\r\n(0,_modules_accordeon__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\r\n\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ }),
+
+/***/ "./modules/accordeon.js":
+/*!******************************!*\
+  !*** ./modules/accordeon.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst accordeon = () => {\r\n  const accordeonBlock = document.querySelector(\".accordeon\");\r\n  const accorItems = accordeonBlock.querySelectorAll(\".element\");\r\n  const accorText = accordeonBlock.querySelectorAll(\".element-content\");\r\n\r\n  accorText.forEach((block, index) => {\r\n    if (accorItems[index] != accorItems[0]) {\r\n      block.style.transition = \"all .3s\";\r\n      block.style.overflow = \"hidden\";\r\n      block.style.maxHeight = \"0px\";\r\n      block.style.padding = \"0 20px\";\r\n      block.style.display = \"block\";\r\n    }\r\n  });\r\n\r\n  accorItems.forEach((elem) => {\r\n    const descr = elem.querySelector(\".element-content\");\r\n\r\n    elem.addEventListener(\"click\", () => {\r\n      accorText.forEach((tab, index) => {\r\n        if (tab == descr) {\r\n          accorItems[index].classList.add(\"active\");\r\n          accorItems[index].style.paddingBottom = \"20px\";\r\n          tab.style.padding = \"20px 20px 0\";\r\n          tab.style.maxHeight = tab.scrollHeight + 20 + \"px\";\r\n        } else {\r\n          accorItems[index].classList.remove(\"active\");\r\n          accorItems[index].style.paddingBottom = \"0px\";\r\n          tab.style.transition = \"all .3s\";\r\n          tab.style.overflow = \"hidden\";\r\n          tab.style.maxHeight = \"0px\";\r\n          tab.style.padding = \"0 20px\";\r\n          tab.style.display = \"block\";\r\n        }\r\n      });\r\n    });\r\n  });\r\n};\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (accordeon);\r\n\n\n//# sourceURL=webpack:///./modules/accordeon.js?");
 
 /***/ }),
 
