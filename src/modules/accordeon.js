@@ -18,7 +18,15 @@ const accordeon = () => {
 
     elem.addEventListener("click", () => {
       accorText.forEach((tab, index) => {
-        if (tab == descr) {
+        if (tab == descr && accorItems[index].classList.contains("active")) {
+          accorItems[index].classList.remove("active");
+          accorItems[index].style.paddingBottom = "0px";
+          tab.style.transition = "all .3s";
+          tab.style.overflow = "hidden";
+          tab.style.maxHeight = "0px";
+          tab.style.padding = "0 20px";
+          tab.style.display = "block";
+        } else if (tab == descr) {
           accorItems[index].classList.add("active");
           accorItems[index].style.paddingBottom = "20px";
           tab.style.padding = "20px 20px 0";
@@ -34,6 +42,25 @@ const accordeon = () => {
         }
       });
     });
+
+    /* elem.addEventListener("click", () => {
+      accorText.forEach((tab, index) => {
+        if (tab == descr) {
+          accorItems[index].classList.add("active");
+          accorItems[index].style.paddingBottom = "20px";
+          tab.style.padding = "20px 20px 0";
+          tab.style.maxHeight = tab.scrollHeight + 20 + "px";
+        } else {
+          accorItems[index].classList.remove("active");
+          accorItems[index].style.paddingBottom = "0px";
+          tab.style.transition = "all .3s";
+          tab.style.overflow = "hidden";
+          tab.style.maxHeight = "0px";
+          tab.style.padding = "0 20px";
+          tab.style.display = "block";
+        }
+      });
+    }); */
   });
 };
 
