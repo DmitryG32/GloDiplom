@@ -6,9 +6,9 @@ const sendForm1 = () => {
   const inputTel = form.querySelector("input[name='tel']");
 
   const regexpText = /[^а-яА-я- ]/;
-  const regexpTel = /[^\d+-]/;
+  const regexpTel = /[^\d\+\(\)\-\ ]/;
 
-  let namelVal;
+  let nameVal;
   let telVal;
 
   function maskPhone(selector, masked = "+7 (__) --") {
@@ -54,7 +54,7 @@ const sendForm1 = () => {
     }
   }
 
-  maskPhone("input[name='tel']", "+7 (___)-__-__-___--");
+  maskPhone("input[name='tel']");
 
   const message = {
     loading: "Зашрузка...",
@@ -65,6 +65,12 @@ const sendForm1 = () => {
   const validateName = (name) => {
     let reg = /^([А-Яа-я]{1}[А-Яа-я ]{1,})$/;
     return reg.test(String(name));
+  };
+
+  const validateTel = (tel) => {
+    /*  let reg = /^([\+]{0,1}[\d]{6,16})$/; */
+    let reg = /[\d\+\-\(\)\ ]{16,}/;
+    return reg.test(String(tel));
   };
 
   const clearInputs = () => {
@@ -89,7 +95,7 @@ const sendForm1 = () => {
 
   inputName.addEventListener("input", (e) => {
     e.target.value = e.target.value.replace(regexpText, "");
-    namelVal = e.target.value;
+    nameVal = e.target.value;
 
     if (e.target.classList.contains("error") && validateName(e.target.value)) {
       e.target.classList.remove("error");
@@ -100,7 +106,7 @@ const sendForm1 = () => {
     e.target.value = e.target.value.replace(regexpTel, "");
     telVal = e.target.value;
 
-    if (e.target.classList.contains("error")) {
+    if (e.target.classList.contains("error") && validateTel(e.target.value)) {
       e.target.classList.remove("error");
     }
   });
@@ -119,8 +125,13 @@ const sendForm1 = () => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
-      if (!validateName(namelVal)) {
+      if (!validateName(nameVal)) {
         inputName.classList.add("error");
+      }
+
+      if (!validateTel(telVal)) {
+        console.log("ошибка");
+        inputTel.classList.add("error");
       }
 
       const statusMess = document.createElement("div");
