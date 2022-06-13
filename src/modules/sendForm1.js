@@ -1,4 +1,4 @@
-const sendForm = () => {
+const sendForm1 = () => {
   const form = document.querySelector("form");
   const inputs = form.querySelectorAll("input[type='text']");
 
@@ -8,14 +8,14 @@ const sendForm = () => {
   const regexpText = /[^а-яА-я- ]/;
   const regexpTel = /[^\d+]/;
 
+  let namelVal;
+  let telVal;
+
   const message = {
     loading: "Зашрузка...",
     success: "Спасибо! С вами свяжутся!",
     failure: "Что-то пошло не так...",
   };
-
-  let namelVal;
-  let telVal;
 
   const validateName = (name) => {
     let reg = /^([А-Яа-я]{1}[А-Яа-я ]{1,})$/;
@@ -59,17 +59,25 @@ const sendForm = () => {
     inputTel.classList.remove("error");
   });
 
+  inputName.addEventListener("invalid", (e) => {
+    e.preventDefault();
+    if (!validateName(namelVal)) {
+      inputName.classList.add("error");
+      inputName.setCustomValidity("Ошибка в телефоне");
+    }
+  });
+
+  inputTel.addEventListener("invalid", (e) => {
+    e.preventDefault();
+    if (!validateTel(telVal)) {
+      inputTel.classList.add("error");
+      inputName.setCustomValidity("Ошибка в имени");
+    }
+  });
+
   try {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-
-      if (!validateName(namelVal)) {
-        inputName.classList.add("error");
-      }
-
-      if (!validateTel(telVal)) {
-        inputTel.classList.add("error");
-      }
 
       const statusMess = document.createElement("div");
       statusMess.classList.add("status");
@@ -91,10 +99,7 @@ const sendForm = () => {
           statusMess.remove();
         }, 5000);
       } else {
-        postData(
-          /* "dist/server.php" */ "https://jsonplaceholder.typicode.com/posts",
-          formBody
-        )
+        postData("https://jsonplaceholder.typicode.com/posts", formBody)
           .then((res) => {
             statusMess.textContent = message.success;
           })
@@ -114,4 +119,4 @@ const sendForm = () => {
   }
 };
 
-export default sendForm;
+export default sendForm1;

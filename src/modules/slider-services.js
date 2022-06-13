@@ -31,7 +31,6 @@ const sliderServices = () => {
       sumItems = 1;
     }
   });
-  console.log(document.documentElement.clientWidth);
 
   const prevSlide = (elem) => {
     elem.style.left = -offset + "px";
@@ -40,6 +39,25 @@ const sliderServices = () => {
   const nextSlide = (elem) => {
     elem.style.left = -offset + "px";
   };
+
+  window.addEventListener("resize", () => {
+    servicesItems.forEach((item) => {
+      item.style.minWidth = "33.333%";
+      offsetWidth = item.offsetWidth;
+
+      if (document.documentElement.clientWidth <= 992) {
+        item.style.minWidth = "50%";
+        offsetWidth = item.offsetWidth;
+        sumItems = 2;
+      }
+
+      if (document.documentElement.clientWidth <= 576) {
+        item.style.minWidth = "100%";
+        offsetWidth = item.offsetWidth;
+        sumItems = 1;
+      }
+    });
+  });
 
   sliderStop = (servicesItems.length - sumItems) * offsetWidth;
 
