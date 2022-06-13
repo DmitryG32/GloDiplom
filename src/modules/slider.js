@@ -1,6 +1,7 @@
 const slider = () => {
   const sliderBlock = document.querySelector(".top-slider");
   const sliderItems = sliderBlock.querySelectorAll(".item");
+  const sliderTable = sliderBlock.querySelectorAll(".table");
 
   const portfolioDots = document.querySelector(".slick-dots");
   const newArrDots = [];
@@ -28,21 +29,24 @@ const slider = () => {
 
   const sliderMove = () => {
     if (currentIndex < sliderItems.length) {
-      sliderItems.forEach((item) => {
+      sliderItems.forEach((item, index) => {
         item.style.order = "0";
         item.style.opacity = "0";
+        sliderTable[index].classList.remove("active");
       });
     } else {
       currentIndex = 0;
 
-      sliderItems.forEach((item) => {
+      sliderItems.forEach((item, index) => {
         item.style.order = "0";
         item.style.opacity = "0";
+        sliderTable[index].classList.remove("active");
       });
     }
 
     sliderItems[currentIndex].style.opacity = "1";
     sliderItems[currentIndex].style.order = "-1";
+    sliderTable[currentIndex].classList.add("active");
     dots.forEach((dot) => {
       dot.classList.remove("slick-active");
     });
