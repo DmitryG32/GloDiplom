@@ -11,6 +11,7 @@ const modal = () => {
       modalOverlay.style.display = "block";
     });
   });
+
   body.addEventListener("click", (e) => {
     if (
       e.target.closest(".modal-close") ||
@@ -20,7 +21,10 @@ const modal = () => {
       modalOverlay.style.display = "none";
     }
 
-    if (e.target.matches("a[href='#feedback'")) {
+    if (
+      e.target.matches("a[href='#feedback'") ||
+      e.target.closest(".fancyboxModal")
+    ) {
       modalCallback.style.display = "block";
       modalOverlay.style.display = "block";
     }
