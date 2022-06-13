@@ -4,8 +4,7 @@ const sliderServices = () => {
   const servicesItems = servicesCarousel.querySelectorAll(".col-md-4");
   const servicesArrow = document.querySelector(".services-arrow");
 
-  const sumItems = 3;
-
+  let sumItems = 3;
   let offset = 0;
   let offsetWidth;
   let sliderStop;
@@ -19,7 +18,20 @@ const sliderServices = () => {
   servicesItems.forEach((item) => {
     item.style.minWidth = "33.333%";
     offsetWidth = item.offsetWidth;
+
+    if (document.documentElement.clientWidth <= 992) {
+      item.style.minWidth = "50%";
+      offsetWidth = item.offsetWidth;
+      sumItems = 2;
+    }
+
+    if (document.documentElement.clientWidth <= 576) {
+      item.style.minWidth = "100%";
+      offsetWidth = item.offsetWidth;
+      sumItems = 1;
+    }
   });
+  console.log(document.documentElement.clientWidth);
 
   const prevSlide = (elem) => {
     elem.style.left = -offset + "px";
